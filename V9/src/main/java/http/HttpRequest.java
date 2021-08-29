@@ -98,18 +98,20 @@ public class HttpRequest {
          CRLF，那么就可以停止读取工作了（消息头读取完毕。）
          */
         try{
-            while (true){
+            while(true){
                 String line = readLine();
-                if ("".equals(line)){
+                if("".equals(line)){
                     break;
                 }
                 String[] data = line.split(": ");
-                headers.put(data[0],data[1] );
+                headers.put(data[0],data[1]);
             }
+            System.out.println("headers:"+headers);
         }catch (Exception e){
             e.printStackTrace();
         }
-        System.out.println(headers);
+
+
         System.out.println("HttpRequest:解析消息头完毕!!!");
     }
 
@@ -139,23 +141,24 @@ public class HttpRequest {
      * 解析消息正文
      */
     private void parseContent() {
-
-
     }
+
+    /*
+    这个HttpRequest对应属性对外仅提供get方法。
+    因为请求内容是客户端发送过来的，所以不需要做其他改动，应此对外只读即可。
+     */
 
     public String getMethod() {
         return method;
     }
-
     public String getUrl() {
         return url;
     }
-
     public String getProtocol() {
         return protocol;
     }
-
     public String getHeader(String name){
         return headers.get(name);
     }
+
 }
