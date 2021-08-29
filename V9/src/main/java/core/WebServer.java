@@ -26,8 +26,8 @@ public class WebServer {
     }
 
     public void start(){
-        try {
-            while(true){
+        while (true){
+            try {
                 //             使用的协议/服务器地址信息/抽象路径部分
                 //浏览器进行测试: http://localhost:8088/index.html
                 System.out.println("等待客户端连接...");
@@ -38,11 +38,12 @@ public class WebServer {
                 ClientHandler handler = new ClientHandler(socket);
                 Thread t = new Thread(handler);
                 t.start();
-            }
 
-        } catch (IOException e) {
-            e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
+
     }
 
     public static void main(String[] args) {
