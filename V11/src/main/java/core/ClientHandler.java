@@ -1,6 +1,5 @@
 package core;
 
-import http.HttpContext;
 import http.HttpRequest;
 import http.HttpResponse;
 
@@ -28,7 +27,7 @@ public class ClientHandler implements Runnable{
 
             //处理请求
             //先通过request获取用户请求的资源的抽象路径
-            String path = request.getUrl();
+            String path = request.getRequestURI();
             //从webapps目录下根据抽象路径寻找请求资源
             //http://localhost:8088/myweb/index.html
             File file = new File("./webapps"+path);
@@ -37,15 +36,6 @@ public class ClientHandler implements Runnable{
                 System.out.println("该资源已找到");
                 //将要响应的资源设置到response中
                 response.setEntity(file);
-                //设置响应头
-                String fileName = file.getName();
-                int index = fileName.lastIndexOf(".")+1;
-                String name = fileName.substring(index);
-                System.out.println(name);
-                String line = HttpContext.getMimeType(name);
-                response.putHeader("Content-Type",line);
-                response.putHeader("Content-Length",file.length()+"");
-
             }else{
                 System.out.println("该资源不存在");
                 File f = new File("./webapps/root/404.html");
@@ -54,10 +44,6 @@ public class ClientHandler implements Runnable{
                 //设置状态码、状态描述
                 response.setStatusCode(404);
                 response.setStatusReason("NOT FOUND");
-                //设置响应头
-                response.putHeader("Content-Type","text/html");
-                response.putHeader("Content-Length",f.length()+"");
-
             }
             //发送响应
             response.flush();

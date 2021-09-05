@@ -1,3 +1,4 @@
 # 项目排除路径
-/V1/target/
 /.idea
+/*/target
+*.class

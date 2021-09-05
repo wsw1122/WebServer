@@ -17,6 +17,13 @@
         <module>V7</module>
         <module>V8</module>
         <module>V9</module>
+        <module>V10</module>
+        <module>V11</module>
+        <module>V12</module>
+        <module>V13</module>
+        <module>V14</module>
+        <module>V15</module>
+        <module>V16</module>
     </modules>
 
     <properties>
@@ -28,5 +35,11 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
     </properties>
-
+    <dependencies>
+        <dependency>
+            <groupId>org.dom4j</groupId>
+            <artifactId>dom4j</artifactId>
+            <version>2.1.1</version>
+        </dependency>
+    </dependencies>
 </project>
